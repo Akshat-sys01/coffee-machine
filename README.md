@@ -1,6 +1,6 @@
 # ☕ Python Coffee Machine Simulator
 
-A text-based coffee machine simulator built in Python. This project demonstrates both procedural and Object-Oriented Programming (OOP) approaches to building a simple application. It simulates the core functionalities of a coffee machine, including handling drink orders, managing resources, and processing coin-based payments.
+A text-based coffee machine simulator built in Python and implemented in Jupyter Notebooks. This project demonstrates both procedural and Object-Oriented Programming (OOP) approaches to building a simple application. It simulates the core functionalities of a coffee machine, including handling drink orders, managing resources, and processing coin-based payments.
 
 -----
 
@@ -16,64 +16,62 @@ A text-based coffee machine simulator built in Python. This project demonstrates
 
 ## 📂 Project Structure
 
-The repository is organized into two main implementation files: one procedural and one object-oriented.
+The repository contains two versions of the simulator, both implemented as Jupyter Notebooks, organized into their respective folders.
 
 ```
 coffee-machine/
 │
-├── main.py          # Procedural version
-├── main_oop.py      # Object-Oriented version
-└── README.md        # Project documentation
+├── procedural_version/
+│   └── main.ipynb         # Procedural version (Jupyter Notebook)
+├── oop_version/
+│   └── main.ipynb         # Object-Oriented version (Jupyter Notebook)
+└── README.md              # Project documentation
 ```
 
 -----
 
 ## 🚀 Getting Started
 
-Follow these instructions to get a copy of the project up and running on your local machine.
+Follow these instructions to get the project up and running on your local machine.
 
 ### Prerequisites
 
-Ensure you have **Python 3.x** installed on your system. You can check your version by running:
+You'll need the following software installed to run the notebooks:
 
-```bash
-python --version
-```
+  * **Python 3.x**
+  * **Jupyter Notebook** or **JupyterLab**. If you don't have it, you can install it via pip:
+    ```bash
+    pip install notebook
+    ```
 
 ### Installation & Execution
 
 1.  **Clone the repository** to your local machine:
-
     ```bash
     git clone https://github.com/your-username/coffee-machine.git
     ```
-
 2.  **Navigate to the project directory**:
-
     ```bash
     cd coffee-machine
     ```
-
-3.  **Run the simulator**: You can run either the procedural or the OOP version of the machine.
-
-      * To run the **procedural version**:
+3.  **Run the simulators**:
+    1.  Start the Jupyter environment from your terminal:
         ```bash
-        python main.py
+        jupyter notebook
         ```
-      * To run the **Object-Oriented version**:
-        ```bash
-        python main_oop.py
-        ```
+    2.  A new tab will open in your web browser. From there, you can navigate into either the `procedural_version` or `oop_version` folder.
+    3.  Click on the `main.ipynb` file inside your chosen folder.
+    4.  Run the cells sequentially within the notebook to start the simulator.
 
 -----
 
 ## ⚙️ Code Overview (OOP Version)
 
-The Object-Oriented version (`main_oop.py`) is refactored into distinct classes for better modularity, organization, and scalability. Each class has a specific responsibility:
+The Object-Oriented version, found in `oop_version/main.ipynb`, is refactored into distinct classes for better modularity, organization, and scalability. Each class has a specific responsibility:
 
   * `MenuItem`: Represents a single drink, holding its **name**, **cost**, and required **ingredients**.
   * `Menu`: Manages the collection of all available `MenuItem` objects and provides methods to get menu items or find a specific drink.
-  * `CoffeeMaker`: Handles all resource-related tasks. It stores the current inventory of water, milk, and coffee, checks if resources are sufficient, and "makes" the coffee by deducting the required ingredients.
+  * `CoffeeMaker`: Handles all resource-related tasks. It stores the current inventory, checks if resources are sufficient, and "makes" the coffee by deducting the required ingredients.
   * `MoneyMachine`: Manages all financial transactions. It processes coin payments, confirms if the payment is sufficient, provides change, and tracks the total profit.
 
 ### Example Initialization & Main Loop
