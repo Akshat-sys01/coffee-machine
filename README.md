@@ -1,70 +1,69 @@
-# Coffee Machine Simulator ☕
+# ☕ Python Coffee Machine Simulator
 
-A Python project that simulates a fully functional coffee machine, offered in both **procedural** and **object-oriented (OOP)** versions. This simulator is an excellent exercise for understanding different programming paradigms, class-based design, and data persistence with JSON.
+A fully functional coffee machine simulator built with Python. This project demonstrates core **object-oriented programming (OOP)** principles by modeling a coffee machine's menu, resources, and payment processing. The machine's state, including resources and profit, is automatically saved to a `data.json` file after every transaction.
 
 -----
 
 ## 🚀 Core Features
 
-  * **Dual Programming Styles**: Includes both a step-by-step procedural implementation and a modular object-oriented version to compare approaches.
-  * **Object-Oriented Design**: The OOP version neatly organizes code into distinct classes:
-      * `MenuItem` & `Menu`: Manages drink data and menu options.
-      * `CoffeeMaker`: Handles resource management (water, milk, coffee).
-      * `MoneyMachine`: Processes payments and tracks profit.
-  * **Data Persistence**: The machine's state (resources and profit) is automatically saved to a `data.json` file. This data is loaded on startup and updated after every transaction, so you never lose your progress.
-  * **Interactive Console**: A simple and intuitive command-line interface. Order drinks, print a status `report`, or turn the machine `off`.
+  * **Object-Oriented Design**: The machine is built using distinct classes (`MenuItem`, `Menu`, `CoffeeMaker`, `MoneyMachine`), making the code modular, clean, and easy to maintain.
+  * **Data Persistence**: Never lose your progress\! The machine’s resources (water, milk, coffee) and total profit are **saved to `data.json`** and reloaded every time you run the simulator.
+  * **Resource Management**: The `CoffeeMaker` class intelligently checks if there are enough ingredients to make a drink before brewing.
+  * **Transaction Processing**: The `MoneyMachine` class handles all payment logic, accepting virtual coins, calculating change, and tracking profits.
+  * **Interactive CLI**: A simple and intuitive command-line interface allows you to order drinks, check resources with a `report`, or turn the machine `off`.
 
 -----
 
 ## 📂 Project Structure
 
+The project is organized into just two key files, keeping it simple and straightforward.
+
 ```
 coffee-machine/
 │
-├── procedural_version/
-│   └── main.ipynb         # Procedural implementation
-├── oop_version/
-│   ├── main.ipynb         # Object-Oriented implementation
-│   └── data.json          # Stores resource and sales data
-└── README.md              # Project documentation
+├── main.ipynb      # The main Python script with the coffee machine logic.
+└── data.json       # Stores and loads the machine's resources and profit.
 ```
 
 -----
 
-## ⚡ How to Run
+## ⚡ Getting Started
+
+Running the simulator is easy. Just follow these steps:
 
 1.  **Clone the repository:**
+
     ```bash
     git clone https://github.com/your-username/coffee-machine.git
+    cd coffee-machine
     ```
-2.  **Navigate to the project directory:**
-    ```bash
-    cd coffee-machine/oop_version
-    ```
-3.  **Launch the Jupyter Notebook:**
+
+2.  **Launch the Jupyter Notebook:**
+
     ```bash
     jupyter notebook main.ipynb
     ```
-4.  **Run the cells** and interact with the coffee machine through the prompts.
+
+3.  **Run the cells** in the notebook and follow the prompts in the console to interact with your coffee machine\!
 
 -----
 
-## 📊 Data Persistence (`data.json`)
+## 📊 How It Works: Data Persistence
 
-The machine's state is saved in a simple JSON file, ensuring that resources and sales figures are preserved between sessions.
+The machine's state is stored in `data.json`. This file is read when the simulator starts and updated after every successful purchase, ensuring your resource levels and sales data are always current.
 
 **Example `data.json`:**
 
 ```json
 {
-    "resources": {
-        "water": 300,
-        "milk": 200,
-        "coffee": 100
-    },
-    "sales": {
-        "profit": 0.0
-    }
+  "resources": {
+    "water": 300,
+    "milk": 200,
+    "coffee": 100
+  },
+  "sales": {
+    "profit": 0.0
+  }
 }
 ```
 
@@ -72,15 +71,19 @@ The machine's state is saved in a simple JSON file, ensuring that resources and 
 
 ## 🎯 Key Concepts Demonstrated
 
-  * Comparing **Procedural** vs. **Object-Oriented Programming**.
-  * Implementing classes, objects, and methods in Python.
-  * Handling file I/O operations with the **JSON** module.
-  * Writing clean, modular, and reusable code.
+This project is an excellent practical exercise for understanding:
+
+  * **Object-Oriented Programming (OOP)** in Python.
+  * **Class and method design** for building modular systems.
+  * **JSON file handling** for data storage and retrieval.
+  * Writing **clean, reusable, and well-documented code**.
 
 -----
 
-## 💡 Potential Enhancements
+## 💡 Future Roadmap
 
-  * **User Authentication**: Implement admin and customer roles with different permissions.
-  * **Database Integration**: Replace `data.json` with an SQLite database for more robust storage.
-  * **Interface Upgrade**: Build a Graphical User Interface (GUI) or a web-based front-end.
+Here are a few ideas for extending the project's functionality:
+
+  * **User Authentication**: Implement different roles, like an "admin" who can refill resources and a "customer" who can only order.
+  * **Database Integration**: Replace the `data.json` file with a more robust database system like **SQLite**.
+  * **GUI Interface**: Upgrade the command-line interface to a graphical user interface using a library like **Tkinter** or **PyQt**.
