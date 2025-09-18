@@ -1,68 +1,123 @@
-# Python Coffee Machine Simulator ☕
+# ☕ Python Coffee Machine Simulator
 
-A simple, text-based coffee machine simulator written in Python. This program mimics the functionality of a real coffee machine, allowing users to order drinks, process payments, and manage resources.
+A text-based coffee machine simulator built in Python. This project demonstrates both procedural and Object-Oriented Programming (OOP) approaches to building a simple application. It simulates the core functionalities of a coffee machine, including handling drink orders, managing resources, and processing coin-based payments.
+
+-----
 
 ## ✨ Features
 
-  * **Order Drinks**: Users can order one of three available drinks: **Espresso**, **Latte**, or **Cappuccino**.
-  * **Resource Management**: The machine tracks its internal resources (water, milk, coffee). It will not dispense a drink if there aren't enough ingredients.
-  * **Coin-Based Payments**: The program accepts payments in US coins (pennies, nickels, dimes, and quarters).
-  * **Transaction Handling**: It checks if the payment is sufficient, provides change if necessary, and refunds money if the payment is too low.
-  * **Admin Commands**:
-      * `report`: Prints a detailed report of the current resource levels and money collected.
-      * `off`: Shuts down the machine and terminates the program.
+  * **📝 Multiple Drink Options**: Order from a menu of espresso, latte, or cappuccino.
+  * **💧 Resource Management**: Automatically tracks and deducts water, milk, and coffee inventory for each order.
+  * **💰 Coin-Based Payments**: Accepts US coins (pennies, nickels, dimes, and quarters).
+  * **🔄 Smart Transaction Handling**: Calculates the total cost, processes payments, and provides exact change or refunds for insufficient amounts.
+  * **🛠️ Administrator Controls**: Use special commands like `report` to view current resource levels and profit, and `off` to shut down the machine for maintenance.
 
 -----
 
-## 🚀 How to Run
+## 📂 Project Structure
 
-1.  **Prerequisites**: Ensure you have **Python 3** installed on your system.
-2.  **Save the Code**: Save the provided code into a file named `main.py`.
-3.  **Execute from Terminal**: Open your terminal or command prompt, navigate to the directory where you saved the file, and run the following command:
+The repository is organized into two main implementation files: one procedural and one object-oriented.
+
+```
+coffee-machine/
+│
+├── main.py          # Procedural version
+├── main_oop.py      # Object-Oriented version
+└── README.md        # Project documentation
+```
+
+-----
+
+## 🚀 Getting Started
+
+Follow these instructions to get a copy of the project up and running on your local machine.
+
+### Prerequisites
+
+Ensure you have **Python 3.x** installed on your system. You can check your version by running:
+
+```bash
+python --version
+```
+
+### Installation & Execution
+
+1.  **Clone the repository** to your local machine:
+
     ```bash
-    python main.py
+    git clone https://github.com/your-username/coffee-machine.git
     ```
-4.  **Interact**: Follow the on-screen prompts to order your coffee\!
+
+2.  **Navigate to the project directory**:
+
+    ```bash
+    cd coffee-machine
+    ```
+
+3.  **Run the simulator**: You can run either the procedural or the OOP version of the machine.
+
+      * To run the **procedural version**:
+        ```bash
+        python main.py
+        ```
+      * To run the **Object-Oriented version**:
+        ```bash
+        python main_oop.py
+        ```
 
 -----
 
-## ⚙️ Code Structure
+## ⚙️ Code Overview (OOP Version)
 
-The program's logic is built around two key dictionaries and a `while` loop.
+The Object-Oriented version (`main_oop.py`) is refactored into distinct classes for better modularity, organization, and scalability. Each class has a specific responsibility:
 
-  * `menu`: A dictionary that defines each drink, including its required **ingredients** and **price**.
-    ```python
-    menu = {
-        "espresso": {
-            "ingredients": { "water": 50, "milk": 0, "coffee": 20 },
-            "price": 1.5
-        },
-        # ... other drinks
-    }
-    ```
-  * `resources`: A dictionary that acts as the machine's inventory, tracking the available **water**, **milk**, **coffee**, and **money**.
-    ```python
-    resources = {
-        "water": 1000,
-        "milk": 1000,
-        "coffee": 100,
-        "money": 0
-    }
-    ```
-  * **Main Loop**: An infinite `while` loop keeps the machine running. Inside the loop, the program:
-    1.  Prompts the user for an order.
-    2.  Handles special commands (`off`, `report`).
-    3.  Checks if resources are sufficient for the selected drink.
-    4.  Processes coin-based payment.
-    5.  Completes the transaction by deducting ingredients, adding money, and dispensing the drink (and any change).
+  * `MenuItem`: Represents a single drink, holding its **name**, **cost**, and required **ingredients**.
+  * `Menu`: Manages the collection of all available `MenuItem` objects and provides methods to get menu items or find a specific drink.
+  * `CoffeeMaker`: Handles all resource-related tasks. It stores the current inventory of water, milk, and coffee, checks if resources are sufficient, and "makes" the coffee by deducting the required ingredients.
+  * `MoneyMachine`: Manages all financial transactions. It processes coin payments, confirms if the payment is sufficient, provides change, and tracks the total profit.
+
+### Example Initialization & Main Loop
+
+```python
+# Create objects from classes
+money_machine = MoneyMachine()
+coffee_maker = CoffeeMaker()
+menu = Menu()
+
+is_on = True
+
+while is_on:
+    options = menu.get_items()
+    choice = input(f"What would you like? ({options}): ")
+    if choice == 'off':
+        is_on = False
+    elif choice == 'report':
+        coffee_maker.report()
+        money_machine.report()
+    else:
+        drink = menu.find_drink(choice)
+        # Check resources and process payment before making the coffee
+        if coffee_maker.is_resource_sufficient(drink) and money_machine.make_payment(drink.cost):
+            coffee_maker.make_coffee(drink)
+```
 
 -----
 
-## 💡 Possible Improvements
+## 🎯 Key Learning Objectives
 
-This project serves as a great foundation. Here are a few ideas for extending its functionality:
+This project is an excellent exercise for:
 
-  * **Refactor with Functions**: Encapsulate repetitive logic (like resource checking and payment processing) into separate functions to make the code cleaner and more modular (DRY - Don't Repeat Yourself).
-  * **Object-Oriented Programming**: Re-implement the project using classes, such as a `CoffeeMachine` class, to better organize data and behavior.
-  * **Robust Error Handling**: Add `try-except` blocks to handle invalid user inputs, such as ordering an item not on the menu or entering non-numeric values for coins.
-  * **Scalability**: Make it easier to add new drinks to the `menu` without having to modify the core logic.
+  * Practicing Python fundamentals such as functions, loops, and dictionaries.
+  * Understanding and applying **Object-Oriented Programming (OOP)** principles including classes, objects, attributes, and methods.
+  * Learning how to refactor procedural code into a clean, modular, and reusable OOP design.
+
+-----
+
+## 🔮 Future Enhancements
+
+Potential improvements and future directions for the project include:
+
+  * **Data Persistence**: Save resource levels and sales data to a file (JSON/CSV) or a database (SQLite).
+  * **User Authentication**: Differentiate between an admin (who can run reports and refill resources) and a customer.
+  * **GUI Implementation**: Build a graphical user interface using a framework like **Tkinter** or **PyQt**.
+  * **Web Application**: Convert the simulator into a web app using **Flask** or **Django**.
