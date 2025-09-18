@@ -1,0 +1,10 @@
+{
+    "resources": {
+        "water": 600,
+        "milk": 700,
+        "coffee": 152
+    },
+    "sales": {
+        "profit": 5.0
+    }
+}
