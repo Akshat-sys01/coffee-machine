@@ -1,121 +1,86 @@
-# ☕ Python Coffee Machine Simulator
+# Coffee Machine Simulator ☕
 
-A text-based coffee machine simulator built in Python and implemented in Jupyter Notebooks. This project demonstrates both procedural and Object-Oriented Programming (OOP) approaches to building a simple application. It simulates the core functionalities of a coffee machine, including handling drink orders, managing resources, and processing coin-based payments.
+A Python project that simulates a fully functional coffee machine, offered in both **procedural** and **object-oriented (OOP)** versions. This simulator is an excellent exercise for understanding different programming paradigms, class-based design, and data persistence with JSON.
 
 -----
 
-## ✨ Features
+## 🚀 Core Features
 
-  * **📝 Multiple Drink Options**: Order from a menu of espresso, latte, or cappuccino.
-  * **💧 Resource Management**: Automatically tracks and deducts water, milk, and coffee inventory for each order.
-  * **💰 Coin-Based Payments**: Accepts US coins (pennies, nickels, dimes, and quarters).
-  * **🔄 Smart Transaction Handling**: Calculates the total cost, processes payments, and provides exact change or refunds for insufficient amounts.
-  * **🛠️ Administrator Controls**: Use special commands like `report` to view current resource levels and profit, and `off` to shut down the machine for maintenance.
+  * **Dual Programming Styles**: Includes both a step-by-step procedural implementation and a modular object-oriented version to compare approaches.
+  * **Object-Oriented Design**: The OOP version neatly organizes code into distinct classes:
+      * `MenuItem` & `Menu`: Manages drink data and menu options.
+      * `CoffeeMaker`: Handles resource management (water, milk, coffee).
+      * `MoneyMachine`: Processes payments and tracks profit.
+  * **Data Persistence**: The machine's state (resources and profit) is automatically saved to a `data.json` file. This data is loaded on startup and updated after every transaction, so you never lose your progress.
+  * **Interactive Console**: A simple and intuitive command-line interface. Order drinks, print a status `report`, or turn the machine `off`.
 
 -----
 
 ## 📂 Project Structure
 
-The repository contains two versions of the simulator, both implemented as Jupyter Notebooks, organized into their respective folders.
-
 ```
 coffee-machine/
 │
 ├── procedural_version/
-│   └── main.ipynb         # Procedural version (Jupyter Notebook)
+│   └── main.ipynb         # Procedural implementation
 ├── oop_version/
-│   └── main.ipynb         # Object-Oriented version (Jupyter Notebook)
+│   ├── main.ipynb         # Object-Oriented implementation
+│   └── data.json          # Stores resource and sales data
 └── README.md              # Project documentation
 ```
 
 -----
 
-## 🚀 Getting Started
+## ⚡ How to Run
 
-Follow these instructions to get the project up and running on your local machine.
-
-### Prerequisites
-
-You'll need the following software installed to run the notebooks:
-
-  * **Python 3.x**
-  * **Jupyter Notebook** or **JupyterLab**. If you don't have it, you can install it via pip:
-    ```bash
-    pip install notebook
-    ```
-
-### Installation & Execution
-
-1.  **Clone the repository** to your local machine:
+1.  **Clone the repository:**
     ```bash
     git clone https://github.com/your-username/coffee-machine.git
     ```
-2.  **Navigate to the project directory**:
+2.  **Navigate to the project directory:**
     ```bash
-    cd coffee-machine
+    cd coffee-machine/oop_version
     ```
-3.  **Run the simulators**:
-    1.  Start the Jupyter environment from your terminal:
-        ```bash
-        jupyter notebook
-        ```
-    2.  A new tab will open in your web browser. From there, you can navigate into either the `procedural_version` or `oop_version` folder.
-    3.  Click on the `main.ipynb` file inside your chosen folder.
-    4.  Run the cells sequentially within the notebook to start the simulator.
+3.  **Launch the Jupyter Notebook:**
+    ```bash
+    jupyter notebook main.ipynb
+    ```
+4.  **Run the cells** and interact with the coffee machine through the prompts.
 
 -----
 
-## ⚙️ Code Overview (OOP Version)
+## 📊 Data Persistence (`data.json`)
 
-The Object-Oriented version, found in `oop_version/main.ipynb`, is refactored into distinct classes for better modularity, organization, and scalability. Each class has a specific responsibility:
+The machine's state is saved in a simple JSON file, ensuring that resources and sales figures are preserved between sessions.
 
-  * `MenuItem`: Represents a single drink, holding its **name**, **cost**, and required **ingredients**.
-  * `Menu`: Manages the collection of all available `MenuItem` objects and provides methods to get menu items or find a specific drink.
-  * `CoffeeMaker`: Handles all resource-related tasks. It stores the current inventory, checks if resources are sufficient, and "makes" the coffee by deducting the required ingredients.
-  * `MoneyMachine`: Manages all financial transactions. It processes coin payments, confirms if the payment is sufficient, provides change, and tracks the total profit.
+**Example `data.json`:**
 
-### Example Initialization & Main Loop
-
-```python
-# Create objects from classes
-money_machine = MoneyMachine()
-coffee_maker = CoffeeMaker()
-menu = Menu()
-
-is_on = True
-
-while is_on:
-    options = menu.get_items()
-    choice = input(f"What would you like? ({options}): ")
-    if choice == 'off':
-        is_on = False
-    elif choice == 'report':
-        coffee_maker.report()
-        money_machine.report()
-    else:
-        drink = menu.find_drink(choice)
-        # Check resources and process payment before making the coffee
-        if coffee_maker.is_resource_sufficient(drink) and money_machine.make_payment(drink.cost):
-            coffee_maker.make_coffee(drink)
+```json
+{
+    "resources": {
+        "water": 300,
+        "milk": 200,
+        "coffee": 100
+    },
+    "sales": {
+        "profit": 0.0
+    }
+}
 ```
 
 -----
 
-## 🎯 Key Learning Objectives
+## 🎯 Key Concepts Demonstrated
 
-This project is an excellent exercise for:
-
-  * Practicing Python fundamentals such as functions, loops, and dictionaries.
-  * Understanding and applying **Object-Oriented Programming (OOP)** principles including classes, objects, attributes, and methods.
-  * Learning how to refactor procedural code into a clean, modular, and reusable OOP design.
+  * Comparing **Procedural** vs. **Object-Oriented Programming**.
+  * Implementing classes, objects, and methods in Python.
+  * Handling file I/O operations with the **JSON** module.
+  * Writing clean, modular, and reusable code.
 
 -----
 
-## 🔮 Future Enhancements
+## 💡 Potential Enhancements
 
-Potential improvements and future directions for the project include:
-
-  * **Data Persistence**: Save resource levels and sales data to a file (JSON/CSV) or a database (SQLite).
-  * **User Authentication**: Differentiate between an admin (who can run reports and refill resources) and a customer.
-  * **GUI Implementation**: Build a graphical user interface using a framework like **Tkinter** or **PyQt**.
-  * **Web Application**: Convert the simulator into a web app using **Flask** or **Django**.
+  * **User Authentication**: Implement admin and customer roles with different permissions.
+  * **Database Integration**: Replace `data.json` with an SQLite database for more robust storage.
+  * **Interface Upgrade**: Build a Graphical User Interface (GUI) or a web-based front-end.
