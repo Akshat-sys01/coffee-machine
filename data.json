@@ -1,19 +1,10 @@
 {
     "resources": {
-<<<<<<< HEAD
-        "water": 600,
-        "milk": 700,
-        "coffee": 152
-    },
-    "sales": {
-        "profit": 5.0
-=======
         "water": 1000,
         "milk": 1000,
         "coffee": 200
     },
     "sales": {
-        "profit": 12.5
->>>>>>> 6e97402 (add Coffee Machine project with modular structure)
+        "profit": 0
     }
 }
