@@ -1,10 +1,10 @@
 {
     "resources": {
-        "water": 1800,
-        "milk": 1850,
-        "coffee": 376
+        "water": 1600,
+        "milk": 1700,
+        "coffee": 352
     },
     "sales": {
-        "profit": 2.5
+        "profit": 5.0
     }
 }

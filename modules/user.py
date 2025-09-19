@@ -17,7 +17,7 @@ def login():
 
     for user in users:
         if user["username"] == username and user["password"] == password:
-            print("\nWelcome, {username}!")
+            print(f"\nWelcome, {username}!")
             return user["role"]
         
     print("\nInvalid username or password.\n")

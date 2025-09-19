@@ -2,6 +2,7 @@ from modules.coffee_maker import CoffeeMaker
 from modules.money_machine import MoneyMachine
 from modules.menu import Menu
 from modules.data_handler import save_data
+import difflib
 
 class CoffeeMachine:
     def __init__(self, data):
@@ -57,7 +58,27 @@ class CoffeeMachine:
             print("Please enter a valid option.")
             return
         
+        # Get all valid options
+        valid_options = [item.name for item in self.menu.menu]
+
+        # Try finding drink directly
         drink = self.menu.find_drink(choice)
+
+        if not drink:
+            # Fuzzy matching suggestion
+            closest_match = difflib.get_close_matches(choice, valid_options, n=1, cutoff=0.6)
+            if closest_match:
+                confirm = input(f"'{choice}' not found. Did you mean '{closest_match[0]}'? (y/n): ").lower()
+                if confirm == 'y':
+                    drink = self.menu.find_drink(closest_match[0])
+                else:
+                    print(f"'{choice}' is not available. Please choose from {options}")
+                    return
+            else:
+                print(f"'{choice}' is not available. Please choose from {options}")
+                return
+        
+        # Process order if drink is valid
         if drink:
             if self.coffee_maker.is_resource_sufficient(drink):
                 if self.money_machine.make_payment(drink.cost):
