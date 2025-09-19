@@ -5,7 +5,7 @@ from modules.coffee_machine import CoffeeMachine
 import difflib
 
 def main():
-    print("Welcome to Python Coffee Machine!\n")
+    print("Welcome to Python Coffee Machine!")
 
     # Initialize data and objects
     try:
@@ -20,7 +20,7 @@ def main():
 
     # Login/ Register loop
     while True:
-        choice = input("1. Login\n2. Register\n3. Exit\nChoose: ")
+        choice = input("\n1. Login\n2. Register\n3. Exit\nChoose: ")
         if choice == "1":
             role = login()
             if role == "admin":

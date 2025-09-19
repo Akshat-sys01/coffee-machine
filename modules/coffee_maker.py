@@ -25,4 +25,4 @@ class CoffeeMaker:
     data["resources"] = self.resources
     save_data(data)
 
-    print(f"Here is your {order.name} ☕️. Enjoy!")
+    print(f"\nHere is your {order.name} ☕️. Enjoy!")

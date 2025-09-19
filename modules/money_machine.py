@@ -24,24 +24,24 @@ class MoneyMachine:
         try:
           count = int(input(f"How many {coin}?: "))
           if count < 0:
-            print("Please enter a  non-negative number.")
+            print("\nPlease enter a  non-negative number.")
             continue
           self.money_received += count * self.COIN_VALUES[coin]
           break
         except ValueError:
-          print("Please enter a valid number.")
+          print("\nPlease enter a valid number.")
     return self.money_received
 
   def make_payment(self, cost):
     self.process_coins()
     if self.money_received >= cost:
       change = round(self.money_received - cost, 2)
-      print(f"Here is {self.CURRENCY}{change} in change.")
+      print(f"\nHere is {self.CURRENCY}{change} in change.")
       self.profit += cost
       self.data["sales"]["profit"] = self.profit
       self.money_received = 0
       return True
     else:
-      print("Sorry that's not enough money. Money refunded.")
+      print("\nSorry that's not enough money. Money refunded.")
       self.money_received = 0
       return False

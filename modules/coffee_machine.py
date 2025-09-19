@@ -19,7 +19,8 @@ class CoffeeMachine:
                 self.refill_resources() 
             elif choice == "2": 
                 self.show_report() 
-            elif choice == "3": 
+            elif choice == "3":
+                print(f"\nSuccessfully logged out!")
                 break 
             else: print("Invalid choice.") 
 
@@ -47,6 +48,7 @@ class CoffeeMachine:
             if choice == "1": 
                 self.order_coffee() 
             elif choice == "2": 
+                print("\nSuccessfully logged out!")
                 break
             else: 
                 print("Invalid choice.")
