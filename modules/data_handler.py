@@ -1,6 +1,6 @@
 import json
 
-FILE_PATH = r"C:\Academics 25-26\3rd Sem\My Work\Focused\Projects\Coffee Machine\data.json"
+FILE_PATH = r"C:\Academics 25-26\3rd Sem\My Work\Focused\Projects\Coffee Machine\data\data.json"
 
 def load_data(filename_or_path=FILE_PATH):
     with open(filename_or_path, "r") as f:

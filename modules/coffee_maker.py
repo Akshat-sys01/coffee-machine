@@ -1,4 +1,4 @@
-from coffee.data_handler import save_data
+from modules.data_handler import save_data
 
 # Define "CoffeeMaker" class
 class CoffeeMaker:
